@@ -110,6 +110,7 @@ def run_agent(query: str, wardrobe: dict) -> dict:
     if price_match:
         desc = desc[: price_match.start()] + " " + desc[price_match.end() :]
     desc = re.sub(r'\b(XXS|XS|S/M|S|M|L|XL|XXL|W\d+)\b', " ", desc, flags=re.IGNORECASE)
+    desc = re.sub(r'\bin\s+size\b|\bsize\b', " ", desc, flags=re.IGNORECASE)
     desc = " ".join(desc.split()).lower()
 
     session["parsed"] = {"description": desc, "size": size, "max_price": max_price}
